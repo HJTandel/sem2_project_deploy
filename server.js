@@ -41,6 +41,19 @@ app.get('/', (req, res) => {
   res.send('<h1>Welcome to KiloMart app</h1>');
 });
 
+
+//user data
+app.get("/users", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+
 //PORT
 const PORT = process.env.PORT || 8080;
 
